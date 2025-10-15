@@ -1,8 +1,10 @@
 import { login, logout, register } from '@/routes';
-import { type SharedData } from '@/types';
+import { PaginationProps, Product, type SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
+import ProductItem from '@/components/product-item';
 
-export default function Welcome() {
+
+export default function Welcome({products}: {products: PaginationProps<Product>}) {
     const { auth } = usePage<SharedData>().props;
 
     return (
@@ -132,6 +134,12 @@ export default function Welcome() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 p-8">
+                {products.data.map(product=> (
+                    <ProductItem product={product} key={product.id}/>
+                ))}
             </div>
         </>
     );
