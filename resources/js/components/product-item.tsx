@@ -1,11 +1,12 @@
 import { Product } from '@/types';
 import { Link } from '@inertiajs/react';
 import CurrencyFormatter from '@/components/currency-formatter';
+import { show } from '@/routes/product';
 
 function ProductItem({ product }: { product: Product }) {
     return (
         <div className="card bg-base-100 shadow-xl">
-            <Link href="route('product.create')">
+            <Link href={show(product.slug)}>
                 <figure>
                     <img
                         src={product.image}
@@ -18,11 +19,10 @@ function ProductItem({ product }: { product: Product }) {
                 <h2 className="card-title">{product.title}</h2>
                 <p>
                     By{' '}
-                    <Link href={'/'} className="hover:underline">
+                    <Link href={"/"} className="hover:underline">
                         {product.user.name}
                     </Link>
-                    &nbsp; in{' '}
-                    <Link href={'/'} className="hover:underline">
+                    &nbsp;in <Link href={'/'} className="hover:underline">
                         {product.department.name}
                     </Link>
                 </p>
