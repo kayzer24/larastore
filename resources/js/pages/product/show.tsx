@@ -74,7 +74,7 @@ function Show({
                 false,
             );
         }
-    }, []);
+    });
 
     const getOptionIdsMap = (newOptions: object) => {
         return Object.fromEntries(
