@@ -41,7 +41,7 @@ class CartController extends Controller
         $cartService->addItemToCart(
             $product,
             $data['quantity'],
-            $data['option_ids']
+            $data['option_ids'] ?: []
         );
 
         return back()->with('success', 'Product added to card');
@@ -52,11 +52,11 @@ class CartController extends Controller
      */
     public function update(Request $request, Product $product, CartService $cartService): RedirectResponse
     {
-        $data = $request->validate([
+        $request->validate([
             'quantity' => ['integer', 'min:1'],
         ]);
 
-        $optionsIds = $request->input('option_ids');
+        $optionsIds = $request->input('option_ids') ?: [];
         $quantity = $request->input('quantity');
 
         $cartService->updateItemQuantity($product->id, $quantity, $optionsIds);

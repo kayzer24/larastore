@@ -12,9 +12,9 @@ function Carousel({images}: {images: Image[]}) {
         <>
             <div className="flex items-start gap-8">
                 <div className="flex flex-col items-center gap-2 py-2">
-                    {images.map((image, i) => (
+                    {images.map((image) => (
                         <button
-                            onClick={ev => setSelectedImage(image) }
+                            onClick={() => setSelectedImage(image) }
                             className={"border-2 "+ (selectedImage.id== image.id ? "border-blue-500":"hover:border-blue-500")}
                             key={image.id}
                         >
