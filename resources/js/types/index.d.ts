@@ -29,6 +29,42 @@ export interface SharedData {
     sidebarOpen: boolean;
 
     [key: string]: unknown;
+    totalQuantity: number;
+    totalPrice: number;
+    miniCartItems: CartItem[];
+    csrf_token: string;
+}
+
+export type PageProps<
+    T extends Record<string, unknown> = Record<string, unknown>,
+> = T & {
+    csrf_token: string;
+    auth: {
+        user: User;
+    };
+    ziggy: Config & {location: string}
+    totalQuantity: number;
+    totalPrice: number;
+    miniCartItems: CartItem[];
+}
+
+export type CartItem = {
+    id: number,
+    product_id: number;
+    title: string;
+    slug: string;
+    price: number;
+    quantity: number;
+    option_ids: Record<string, number>;
+    options: VariationTypeOption[];
+    image: string;
+};
+
+export type GroupedCartItems = {
+    user: User;
+    items: CartItem[];
+    totalPrice: number;
+    totalQuantity: number;
 }
 
 export interface User {

@@ -9,6 +9,8 @@
     themes: light --default, dark --prefersdark, emerald;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 .wysiwyg-output > blockquote,
 .wysiwyg-output > dl,
 .wysiwyg-output > dd,

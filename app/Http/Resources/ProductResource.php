@@ -71,7 +71,7 @@ class ProductResource extends JsonResource
                 ];
             }),
         ];
-        //dd($res);
+
         return ($res);
     }
 

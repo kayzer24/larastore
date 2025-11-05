@@ -2,20 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Filament\Resources\Products\Pages\ListProducts;
+use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
-use App\Http\Resources\ProductListResource;
 
 class ProductController extends Controller
 {
     public function index(): Response
     {
         $products = Product::query()
-            ->published()
+            ->forWebsite()
             ->paginate(12);
 
         return Inertia::render('welcome', [
@@ -23,7 +21,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function show(Product $product):Response
+    public function show(Product $product): Response
     {
         return Inertia::render('product/show', [
             'product' => new ProductResource($product),
