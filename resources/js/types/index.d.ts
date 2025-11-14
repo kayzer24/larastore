@@ -33,12 +33,22 @@ export interface SharedData {
     totalPrice: number;
     miniCartItems: CartItem[];
     csrf_token: string;
+    error:string;
+    success:{
+        message: string,
+        time: number
+    };
 }
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
     csrf_token: string;
+    error:string;
+    success:{
+        message: string,
+        time: number
+    };
     auth: {
         user: User;
     };
@@ -130,4 +140,34 @@ export type VariationType = {
     name: string;
     type: 'Select' | 'Radio' | 'Image';
     options: VariationTypeOption[];
+};
+
+
+export type OrderItem = {
+    id: number;
+    quantity: number;
+    price: number;
+    variation_type_option_ids: number[];
+    product: {
+        id: number;
+        title: string;
+        slug: string;
+        description: string;
+        image: string;
+    };
+};
+
+export type Order = {
+    id: number;
+    total_price: number;
+    status: string;
+    create_at: string;
+    vendorUser: {
+        id: string,
+        name: string;
+        email: string;
+        store_name: string;
+        store_address: string;
+    };
+    orderItems: OrderItem[];
 };

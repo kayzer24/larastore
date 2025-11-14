@@ -2,6 +2,7 @@ import Navbar from '@/components/front/navbar';
 import ProductItem from '@/components/product-item';
 import { PaginationProps, Product } from '@/types';
 import { Head } from '@inertiajs/react';
+import AuthenticatedLayout from '@/components/front/authenticated-layout';
 
 export default function Welcome({
     products,
@@ -9,7 +10,7 @@ export default function Welcome({
     products: PaginationProps<Product>;
 }) {
     return (
-        <>
+        <AuthenticatedLayout>
             <Head title="Welcome">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
@@ -17,7 +18,6 @@ export default function Welcome({
                     rel="stylesheet"
                 />
             </Head>
-            <Navbar />
 
             <div className="">
                 <div className="hero h-[300px] bg-base-200">
@@ -43,6 +43,6 @@ export default function Welcome({
                     <ProductItem product={product} key={product.id} />
                 ))}
             </div>
-        </>
+        </AuthenticatedLayout>
     );
 }

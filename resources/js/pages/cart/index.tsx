@@ -1,11 +1,11 @@
 import CurrencyFormatter from '@/components/currency-formatter';
-import Navbar from '@/components/front/navbar';
 import { Button } from '@/components/ui/button';
 import cart from '@/routes/cart';
 import { GroupedCartItems, PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { CreditCardIcon } from 'lucide-react';
 import CartItem from '@/components/front/cart-item';
+import AuthenticatedLayout from '@/components/front/authenticated-layout';
 
 function Index({
     csrf_token,
@@ -16,9 +16,8 @@ function Index({
     cartItems: Record<number, GroupedCartItems>;
 }>) {
     return (
-        <>
+        <AuthenticatedLayout>
             <Head title="Your Cart" />
-            <Navbar />
             <div className="container mx-auto flex flex-col gap-4 p-8 lg:flex-row">
                 <div className="card order-2 flex-1 bg-white lg:order-2 dark:bg-gray-800">
                     <div className="card-body">
@@ -61,7 +60,10 @@ function Index({
                                     {cartItem.items &&
                                         cartItem.items.map((item) => (
                                             <div key={item.id}>
-                                                <CartItem item={item} key={item.id} />
+                                                <CartItem
+                                                    item={item}
+                                                    key={item.id}
+                                                />
                                             </div>
                                         ))}
                                 </div>
@@ -87,7 +89,7 @@ function Index({
                     </div>
                 </div>
             </div>
-        </>
+        </AuthenticatedLayout>
     );
 }
 

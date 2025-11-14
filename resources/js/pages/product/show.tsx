@@ -6,6 +6,7 @@ import cart from '@/routes/cart';
 import { Product, VariationTypeOption } from '@/types';
 import { Head, router, useForm, usePage } from '@inertiajs/react';
 import React, { useEffect, useMemo, useState } from 'react';
+import AuthenticatedLayout from '@/components/front/authenticated-layout';
 
 function Show({
     product,
@@ -74,7 +75,7 @@ function Show({
                 false,
             );
         }
-    });
+    }, []);
 
     const getOptionIdsMap = (newOptions: object) => {
         return Object.fromEntries(
@@ -211,9 +212,9 @@ function Show({
     }, [selectedOptions]);
 
     return (
-        <>
+        <AuthenticatedLayout>
             <Head title={product.title} />
-            <Navbar />
+
             <div className="container mx-auto p-8">
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
                     <div className="col-span-7">
@@ -252,7 +253,7 @@ function Show({
                     </div>
                 </div>
             </div>
-        </>
+        </AuthenticatedLayout>
     );
 }
 

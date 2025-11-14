@@ -17,6 +17,22 @@ npm run dev
 composer run dev
 ```
 
+### Run the Laravel queue for image handler
+```
+php artisan queue:listen
+```
+
+### Test Stripe Webhooks using the CLI
+```
+// Connect the stripe dashboard to the cli
+stripe login
+
+// listen to the stripe wehbook
+stripe listen --forward-to larastore.test/stripe/webhook
+```
+ensure the webhook secret is up to date in the .env file
+
+
 ## Libraries:
 ### PHP
 - [Laravel](https://laravel.com/docs/12.x)

@@ -215,7 +215,7 @@ class CartService
                 'product_id' => $productId,
                 'quantity' => $quantity,
                 'price' => $price,
-                'variation_type_option_ids' => json_encode($optionIds),
+                'variation_type_option_ids' => $optionIds,
             ]);
         }
     }
