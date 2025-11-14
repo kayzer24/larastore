@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
     return (
-        <footer className="footer sm:footer-horizontal bg-base-200 content-center text-base-content p-10">
+        <footer className="footer sm:footer-horizontal bg-base-200 p-10 justify-between sticky top-[100vh]">
             <nav>
                 <h6 className="footer-title">Services</h6>
                 <a className="link link-hover">Branding</a>

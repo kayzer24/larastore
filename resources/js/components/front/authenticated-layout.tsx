@@ -34,7 +34,7 @@ function AuthenticatedLayout({
 
 
     return (
-        <div>
+        <div className="flex flex-col h-screen">
             <Navbar />
 
             { error && (
