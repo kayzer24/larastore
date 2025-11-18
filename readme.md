@@ -50,3 +50,10 @@ ensure the webhook secret is up to date in the .env file
 
 ## Training
 - [Build Multi Vendor E-Commerce Marketplace with Laravel & React](https://www.youtube.com/watch?v=1Vj73iP_7vk&t=3561s)
+
+
+## Useful commands
+To be able to customize the email template, copy the vendor template using:
+```
+php artisan vendor:publish --tag=laravel-mail
+```

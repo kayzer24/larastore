@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::post('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
+//Route::get('/stripe/webhook', [StripeController::class, 'debugWH'])->name('stripe.debugWH');
 
 
 require __DIR__.'/settings.php';

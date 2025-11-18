@@ -2,6 +2,7 @@ import { login, logout, register, welcome } from '@/routes';
 import type { SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import MiniCartDropdown from '@/components/front/mini-cart-dropdown';
+import profile from '@/routes/profile';
 
 function Navbar() {
     const { auth } = usePage<SharedData>().props;
@@ -53,10 +54,10 @@ function Navbar() {
                             className="dropdown-content menu z-1 mt-3 w-52 menu-sm rounded-box bg-base-100 p-2 shadow"
                         >
                             <li>
-                                <a className="justify-between">
+                                <Link href={profile.edit().url} className="justify-between">
                                     Profile
                                     <span className="badge">New</span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <a>Settings</a>
