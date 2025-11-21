@@ -1,8 +1,10 @@
 <?php
 
+use App\Enums\RolesEnum;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -28,10 +30,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/stripe/success', [StripeController::class, 'success'])->name('stripe.success');
     Route::get('/stripe/failure', [StripeController::class, 'failure'])->name('stripe.failure');
+
+    Route::post('/stripe/connect', [StripeController::class, 'connect'])
+        ->name('stripe.connect')
+        ->middleware(['role:'. RolesEnum::Vendor->value]);
+
+    Route::post('/vendor/store', [VendorController::class, 'store'])
+        ->name('vendor.store');
 });
 
 Route::post('/stripe/webhook', [StripeController::class, 'webhook'])->name('stripe.webhook');
-//Route::get('/stripe/webhook', [StripeController::class, 'debugWH'])->name('stripe.debugWH');
 
 
 require __DIR__.'/settings.php';

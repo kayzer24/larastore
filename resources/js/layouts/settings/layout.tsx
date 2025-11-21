@@ -9,6 +9,7 @@ import { show } from '@/routes/two-factor';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { type PropsWithChildren } from 'react';
+import VendorDetails from '@/components/front/vendor-details';
 
 const sidebarNavItems: NavItem[] = [
     {
@@ -42,47 +43,55 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
     const currentPath = window.location.pathname;
 
     return (
-        <div className="px-4 py-6">
-            <Heading
-                title="Settings"
-                description="Manage your profile and account settings"
-            />
+        <div className="py-4">
+            <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+                <div className="space-y-6 col-span-2">
+                    <Heading
+                        title="Settings"
+                        description="Manage your profile and account settings"
+                    />
 
-            <div className="flex flex-col lg:flex-row lg:space-x-12">
-                <aside className="w-full max-w-xl lg:w-48">
-                    <nav className="flex flex-col space-y-1 space-x-0">
-                        {sidebarNavItems.map((item, index) => (
-                            <Button
-                                key={`${typeof item.href === 'string' ? item.href : item.href.url}-${index}`}
-                                size="sm"
-                                variant="ghost"
-                                asChild
-                                className={cn('w-full justify-start', {
-                                    'bg-muted':
-                                        currentPath ===
-                                        (typeof item.href === 'string'
-                                            ? item.href
-                                            : item.href.url),
-                                })}
-                            >
-                                <Link href={item.href}>
-                                    {item.icon && (
-                                        <item.icon className="h-4 w-4" />
-                                    )}
-                                    {item.title}
-                                </Link>
-                            </Button>
-                        ))}
-                    </nav>
-                </aside>
+                    <div className="flex flex-col lg:flex-row lg:space-x-12">
+                        <aside className="w-full max-w-xl lg:w-48">
+                            <nav className="flex flex-col space-y-1 space-x-0">
+                                {sidebarNavItems.map((item, index) => (
+                                    <Button
+                                        key={`${typeof item.href === 'string' ? item.href : item.href.url}-${index}`}
+                                        size="sm"
+                                        variant="ghost"
+                                        asChild
+                                        className={cn('w-full justify-start', {
+                                            'bg-muted':
+                                                currentPath ===
+                                                (typeof item.href === 'string'
+                                                    ? item.href
+                                                    : item.href.url),
+                                        })}
+                                    >
+                                        <Link href={item.href}>
+                                            {item.icon && (
+                                                <item.icon className="h-4 w-4" />
+                                            )}
+                                            {item.title}
+                                        </Link>
+                                    </Button>
+                                ))}
+                            </nav>
+                        </aside>
 
-                <Separator className="my-6 lg:hidden" />
+                        <Separator className="my-6 lg:hidden" />
 
-                <div className="flex-1 md:max-w-2xl">
-                    <section className="max-w-xl space-y-12">
-                        {children}
-                    </section>
+                        <div className="flex-1 md:max-w-2xl">
+                            <section className="max-w-xl space-y-12">
+                                {children}
+                            </section>
+                        </div>
+                    </div>
                 </div>
+                <div className="bg-white p-4 shadow sm-rounded-lg sm:p-4 dark:bg-gray-800">
+                    <VendorDetails className="" />
+                </div>
+
             </div>
         </div>
     );
