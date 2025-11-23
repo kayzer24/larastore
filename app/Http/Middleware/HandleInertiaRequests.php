@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Http\Resources\AuthUserResource;
+use App\Http\Resources\DepartmentResource;
+use App\Models\Department;
 use App\Services\CartService;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
@@ -44,6 +46,10 @@ class HandleInertiaRequests extends Middleware
 
         $cashedCartItems = $cartService->getCartItems();
 
+        $departments = Department::published()
+            ->with('categories')
+            ->get();
+
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
         return [
@@ -62,7 +68,9 @@ class HandleInertiaRequests extends Middleware
             'error' => session('error'),
             'miniCartItems' => $cashedCartItems,
             'totalQuantity' =>  $totalQuantity,
-            'totalPrice' => $totalPrice
+            'totalPrice' => $totalPrice,
+            'departments' => DepartmentResource::collection($departments)->collection->toArray(),
+            'keyword' => $request->query('keyword'),
         ];
     }
 }

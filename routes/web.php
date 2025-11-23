@@ -12,8 +12,15 @@ use Inertia\Inertia;
 //    return Inertia::render('welcome');
 //})->name('home');
 
-Route::get('/', [ProductController::class, 'index'])->name('welcome');
-Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/', 'index')->name('welcome');
+    Route::get('/product/{product:slug}', 'show')->name('product.show');
+    Route::get('/d/{department:slug}', 'byDepartment')->name('product.byDepartment');
+});
+
+Route::get('/s/{vendor:store_name}', [VendorController::class, 'profile'])
+    ->name('vendor.profile');
+
 Route::controller(CartController::class)->group(function () {
     Route::get('/cart', 'index')->name('cart.index');
     Route::post('/cart/add/{product}', 'store')->name('cart.store');

@@ -38,11 +38,14 @@ export interface SharedData {
         message: string,
         time: number
     };
+    departments: Department[];
+    keyword: string
 }
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {
+    name: string;
     csrf_token: string;
     error:string;
     success:{
@@ -56,6 +59,8 @@ export type PageProps<
     totalQuantity: number;
     totalPrice: number;
     miniCartItems: CartItem[];
+    departments: Department[];
+    keyword: string
 }
 
 export type CartItem = {
@@ -107,10 +112,12 @@ export type Product = {
     user: {
         id: number;
         name: string;
+        store_name: string;
     };
     department: {
         id: number;
         name: string;
+        slug: string
     };
     variationTypes: VariationType[];
     variations: Array[{
@@ -119,6 +126,8 @@ export type Product = {
         quantity: number;
         price: number;
     }];
+    meta_title: string;
+    meta_description: string;
 };
 
 export type PaginationProps<T> = {
@@ -174,4 +183,24 @@ export type Order = {
         store_address: string;
     };
     orderItems: OrderItem[];
+};
+
+export type Vendor = {
+    id: number;
+    store_name: string
+    store_address: string;
+};
+
+export type Category = {
+    id: number;
+    name: string;
+};
+
+export type Department = {
+    id: number;
+    name: string;
+    slug: string;
+    meta_title: string;
+    meta_description: string;
+    categories: Category[];
 };

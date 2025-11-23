@@ -18,7 +18,7 @@ function Carousel({images}: {images: Image[]}) {
                             className={"border-2 "+ (selectedImage.id== image.id ? "border-blue-500":"hover:border-blue-500")}
                             key={image.id}
                         >
-                            <img src={image.thumb} alt="" className="w-[50px]" />
+                            <img src={image.thumb} alt="" className="w-[50px] h-[50px]" />
                         </button>
                     ))}
                 </div>

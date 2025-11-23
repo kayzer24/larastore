@@ -1,8 +1,9 @@
 import { Product } from '@/types';
 import { Link, useForm } from '@inertiajs/react';
 import CurrencyFormatter from '@/components/currency-formatter';
-import { show } from '@/routes/product';
+import product, { byDepartment, show } from '@/routes/product';
 import cart from '@/routes/cart';
+import vendor from '@/routes/vendor';
 
 function ProductItem({ product }: { product: Product }) {
     const form = useForm<{
@@ -36,13 +37,8 @@ function ProductItem({ product }: { product: Product }) {
             <div className="card-body">
                 <h2 className="card-title">{product.title}</h2>
                 <p>
-                    By{' '}
-                    <Link href={"/"} className="hover:underline">
-                        {product.user.name}
-                    </Link>
-                    &nbsp;in <Link href={'/'} className="hover:underline">
-                        {product.department.name}
-                    </Link>
+                    By{' '} <Link href={vendor.profile(product.user.store_name)} className="hover:underline">{product.user.name}</Link>
+                    &nbsp;in <Link href={byDepartment(product.department.slug)} className="hover:underline">{product.department.name}</Link>
                 </p>
                 <div className="mt-3 card-actions items-center justify-between">
                     <button onClick={addToCart} className="btn btn-primary">Add to Cart</button>
