@@ -17,6 +17,13 @@ class ProductResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $options = $request->input('options') ?: [];
+        if ($options) {
+            $images = $this->getImagesForOptions($options);
+        } else {
+            $images = $this->getImages();
+        }
+
         $res = [
             'id' => $this->id,
             'title' => $this->title,
@@ -25,7 +32,7 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'quantity' => $this->quantity,
             'image' => $this->getFirstImageUrl(),
-            'images' => $this->getImages()->map(function ($image) {
+            'images' => $images->map(function ($image) {
                 return [
                     'id' => $image->id,
                     'thumb' => $image->getUrl('thumb'),

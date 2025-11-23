@@ -23,8 +23,8 @@ function Carousel({images}: {images: Image[]}) {
                     ))}
                 </div>
                 <div className="carousel w-full">
-                    <div className="carousel-item w-full">
-                        <img src={selectedImage.large} alt="" className="w-full" />
+                    <div className="carousel-item w-full max-h-250">
+                        <img src={selectedImage.large} alt="" className="object-contain" />
                     </div>
                 </div>
             </div>

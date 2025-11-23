@@ -1,3 +1,14 @@
+# Laravel Stripe Connect
+
+Larastore is a Laravel&React Ecommerce project, based on [TheCodeholic](https://www.youtube.com/@TheCodeholic) tutorial.
+it aims to offer initial functionnalities for an ecommerce web application.
+
+## Sponsorship
+Larastore is completely free to use. If it's making your job easier, or you just want to
+make sure it keeps being supported and improved, I'd really appreciate your donations!
+
+[Donate now via GitHub Sponsors](https://github.com/sponsors/kayzer24)
+
 ## Quick Start
 #### Install all dependencies
 ```
@@ -39,6 +50,8 @@ ensure the webhook secret is up to date in the .env file
 - [Spatie Laravel Permission](https://spatie.be/docs/laravel-permission/v6/introduction)
 - [Spatie Media Library](https://filamentphp.com/plugins/filament-spatie-media-library#installation)
 - [Laravel filament](https://filamentphp.com/docs/4.x/introduction/overview)
+- [Stripe](https://github.com/stripe/stripe-php)
+- [Laravel-stripe-connect](https://github.com/kayzer24/laravel-stripe-connect)
 
 ### Node
 - [DaisyUI](https://daisyui.com/docs/intro/)
@@ -56,4 +69,8 @@ ensure the webhook secret is up to date in the .env file
 To be able to customize the email template, copy the vendor template using:
 ```
 php artisan vendor:publish --tag=laravel-mail
+```
+## Run Inertia SSR
+```
+php artisan inertia:start-ssr
 ```

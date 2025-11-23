@@ -9,7 +9,7 @@ function MiniCartDropdown() {
     const { totalQuantity, totalPrice, miniCartItems } = usePage<SharedData>().props;
 
     return (
-        <div className="dropdown dropdown-end">
+        <div className="dropdown dropdown-center">
             <div
                 tabIndex={0}
                 role="button"
@@ -37,7 +37,7 @@ function MiniCartDropdown() {
             </div>
             <div
                 tabIndex={0}
-                className="dropdown-content card card-compact z-1 mt-3 w-[480px] bg-base-100 shadow"
+                className="dropdown-content card card-compact z-1 mt-3 w-[380px] bg-base-100 shadow"
             >
                 <div className="card-body">
                     <span className="text-lg font-bold">
